@@ -1,5 +1,8 @@
 FROM quay.io/factory2/spmm-pipeline-base:latest AS builder
 
+ARG $GIT_URL
+ARG $GIT_REVISION
+
 RUN mkdir repo && \
     cd repo && \
     git init && \
@@ -17,8 +20,7 @@ USER root
 
 RUN mkdir -p /deployment/log /deployment/config && \
   chmod -R 777 /deployment/log /deployment/config
-  
-RUN echo "Pulling jar from: $tarball_url"
+
 COPY --from=builder /repo/target/*-runner.jar /deployment/indy-generic-proxy-service-runner.jar
 RUN chmod +r /deployment/indy-generic-proxy-service-runner.jar
 
