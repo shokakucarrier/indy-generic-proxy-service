@@ -25,6 +25,8 @@ spec:
     value: quay.io/redhat-user-workloads/liyurh-tenant/indy-generic-proxy-service:{{revision}}
   - name: dockerfile
     value: /images/multistage.Dockerfile
+  - name: build-args-file
+    value: /images/argsargs
   pipelineSpec:
     description: |
       This pipeline is ideal for building container images from a Containerfile while maintaining trust after pipeline customization.
