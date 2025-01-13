@@ -190,24 +190,6 @@ spec:
         workspace: git-auth
       - name: netrc
         workspace: netrc
-    - name: get-env
-      params:
-      - default: ''
-        name: imageUrl
-        type: string
-      runAfter:
-      - prefetch-dependencies
-      stepTemplate:
-        env:
-          - name: MAVEN_OPTS
-            value: '-Xmx4g -Xms1024m -XX:MaxPermSize=512m -Xss8m'
-      steps:
-        - script: |
-            #!/bin/sh
-            set -xe
-            env
-            df -h
-          image: quay.io/factory2/spmm-pipeline-base:latest
     - name: build-container
       params:
       - name: IMAGE

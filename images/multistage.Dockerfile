@@ -1,7 +1,7 @@
 FROM quay.io/factory2/spmm-pipeline-base:latest AS builder
 
-ARG $GIT_URL
-ARG $GIT_REVISION
+ARG GIT_URL
+ARG GIT_REVISION
 
 RUN mkdir repo && \
     cd repo && \
