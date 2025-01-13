@@ -24,7 +24,7 @@ RUN mkdir -p /deployment/log /deployment/config && \
 COPY --from=builder /repo/target/*-runner.jar /deployment/indy-generic-proxy-service-runner.jar
 RUN chmod +r /deployment/indy-generic-proxy-service-runner.jar
 
-ADD start-service.sh /deployment/start-service.sh
+ADD /images/start-service.sh /deployment/start-service.sh
 RUN chmod +x /deployment/*
 
 USER 1001
