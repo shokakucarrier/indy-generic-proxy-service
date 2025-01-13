@@ -18,16 +18,16 @@ FROM quay.io/factory2/nos-java-base:ubi9
 
 USER root
 
+ENV JAVA_HOME=/usr/lib/jvm/jre-11-openjdk
+ENV JAVA_CMD=$JAVA_HOME/bin/java
+
 RUN mkdir -p /deployment/log /deployment/config && \
   chmod -R 777 /deployment/log /deployment/config
 
 COPY --from=builder /repo/target/*-runner.jar /deployment/indy-generic-proxy-service-runner.jar
-RUN chmod +r /deployment/indy-generic-proxy-service-runner.jar
-
-ADD /images/start-service.sh /deployment/start-service.sh
-RUN chmod +x /deployment/*
+RUN chmod +rx /deployment/indy-generic-proxy-service-runner.jar
 
 USER 1001
 
 ENTRYPOINT ["bash", "-c"]
-CMD ["/deployment/start-service.sh"]
+CMD ["$JAVA_CMD","$JAVA_OPTS","-jar","/deployment/indy-generic-proxy-service-runner.jar"]
